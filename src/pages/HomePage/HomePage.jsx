@@ -1,4 +1,5 @@
 import { fetchTrendingMovies } from 'api/fetchMovies';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import { useEffect, useState } from 'react';
 
 const HomePage = () => {
@@ -9,24 +10,19 @@ const HomePage = () => {
     try {
       const getTrendingMoviesList = async () => {
         const moviesList = await fetchTrendingMovies();
-        const moviesListTitles = moviesList.results.map(movie => movie.title);
-        setMoviesList(moviesListTitles);
+        setMoviesList(moviesList);
       };
       getTrendingMoviesList();
     } catch (error) {
-      setError('Sorry. Please, try again');
+      setError('Something went wrong. Please reload the page');
     }
   }, []);
 
   return (
     <>
       <h2>Trending today</h2>
-      <ul>
-        {moviesList.map(movieTitle => (
-          <li key={movieTitle}>{movieTitle}</li>
-        ))}
-      </ul>
-      {error && <p>Sorry. {error}</p>}
+      <MoviesList moviesList={moviesList} />
+      {error && <p>{error}</p>}
     </>
   );
 };
