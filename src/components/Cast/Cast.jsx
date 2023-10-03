@@ -1,8 +1,9 @@
 import { fetchMovieCast } from 'api/fetchMovies';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { CastList, CastListItem } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const { id } = useParams();
   const [cast, setCast] = useState([]);
 
@@ -22,9 +23,9 @@ export const Cast = () => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   return (
-    <ul>
+    <CastList>
       {cast.map(({ id, profile_path, name, character }) => (
-        <li key={id}>
+        <CastListItem key={id}>
           <img
             src={
               profile_path
@@ -36,8 +37,10 @@ export const Cast = () => {
           />
           <p>{name}</p>
           <p>{`Character: ${character}`}</p>
-        </li>
+        </CastListItem>
       ))}
-    </ul>
+    </CastList>
   );
 };
+
+export default Cast;

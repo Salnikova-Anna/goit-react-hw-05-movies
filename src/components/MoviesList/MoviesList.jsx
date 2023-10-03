@@ -4,9 +4,9 @@ export const MoviesList = ({ moviesList }) => {
   const location = useLocation();
 
   return (
-    <ul>
+    <ul style={{ paddingLeft: '85px' }}>
       {moviesList.map(({ id, title }) => (
-        <li key={id}>
+        <li key={id} style={{ marginBottom: 5 }}>
           <Link state={location} to={`/movies/${id}`}>
             {title}
           </Link>

@@ -34,8 +34,13 @@ const MoviesPage = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={query} />
+      <form onSubmit={handleSubmit} style={{ margin: '25px 0 0 30px' }}>
+        <input
+          type="text"
+          onChange={handleChange}
+          value={query}
+          style={{ marginRight: 15, width: 250 }}
+        />
         <button type="submit">Search</button>
       </form>
       {movies.length > 0 && <MoviesList moviesList={movies} />}

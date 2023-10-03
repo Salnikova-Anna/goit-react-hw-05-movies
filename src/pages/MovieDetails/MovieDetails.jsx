@@ -8,7 +8,7 @@ import {
   useParams,
 } from 'react-router-dom';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movie, setMovie] = useState('');
   const { id } = useParams();
 
@@ -39,10 +39,14 @@ export const MovieDetails = () => {
 
   return (
     <>
-      <button onClick={handleBackBtnClick} type="button">
+      <button
+        onClick={handleBackBtnClick}
+        type="button"
+        style={{ marginTop: 20, marginBottom: 10, marginLeft: 25 }}
+      >
         Go back
       </button>
-      <div>
+      <div style={{ display: 'flex', gap: '20px', marginLeft: 25 }}>
         <img
           src={
             poster_path
@@ -58,14 +62,16 @@ export const MovieDetails = () => {
           <h3>Overview</h3>
           <p>{overview}</p>
           <h3>Genres</h3>
-          <ul>
+          <ul
+            style={{ display: 'flex', gap: 10, listStyle: 'none', padding: 0 }}
+          >
             {genres?.map(genre => (
               <li key={genre.id}>{genre.name}</li>
             ))}
           </ul>
         </div>
       </div>
-      <div>
+      <div style={{ marginLeft: 25 }}>
         <h4>Additional information</h4>
         <ul>
           <li>
@@ -84,3 +90,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

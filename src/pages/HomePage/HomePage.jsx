@@ -20,7 +20,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h2>Trending today</h2>
+      <h2 style={{ paddingLeft: '65px' }}>Trending today</h2>
       <MoviesList moviesList={moviesList} />
       {error && <p>{error}</p>}
     </>
