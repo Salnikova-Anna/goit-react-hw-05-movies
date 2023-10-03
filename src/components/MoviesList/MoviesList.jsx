@@ -7,7 +7,7 @@ export const MoviesList = ({ moviesList }) => {
     <ul style={{ paddingLeft: '85px' }}>
       {moviesList.map(({ id, title }) => (
         <li key={id} style={{ marginBottom: 5 }}>
-          <Link state={location} to={`/movies/${id}`}>
+          <Link state={{ from: location }} to={`/movies/${id}`}>
             {title}
           </Link>
         </li>

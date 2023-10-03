@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'layouts/Layout';
 
@@ -12,46 +12,11 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
-          index
-          element={
-            <Suspense>
-              <HomePage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="movies"
-          element={
-            <Suspense>
-              <MoviesPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="movies/:id"
-          element={
-            <Suspense>
-              <MovieDetails />
-            </Suspense>
-          }
-        >
-          <Route
-            path="cast"
-            element={
-              <Suspense>
-                <Cast />
-              </Suspense>
-            }
-          />
-          <Route
-            path="reviews"
-            element={
-              <Suspense>
-                <Reviews />
-              </Suspense>
-            }
-          />
+        <Route index element={<HomePage />} />
+        <Route path="movies" element={<MoviesPage />} />
+        <Route path="movies/:id" element={<MovieDetails />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
       </Route>
     </Routes>

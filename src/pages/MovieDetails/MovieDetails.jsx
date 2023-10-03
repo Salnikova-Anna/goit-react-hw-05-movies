@@ -1,19 +1,14 @@
 import { fetchMovieDetailsById } from 'api/fetchMovies';
 import { useEffect, useState } from 'react';
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState('');
   const { id } = useParams();
 
   const location = useLocation();
-  const navigation = useNavigate();
+
+  const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
     try {
@@ -27,9 +22,7 @@ const MovieDetails = () => {
     }
   }, [id]);
 
-  const handleBackBtnClick = () => {
-    navigation(location.state);
-  };
+  if (!movie) return;
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movie;
@@ -39,13 +32,12 @@ const MovieDetails = () => {
 
   return (
     <>
-      <button
-        onClick={handleBackBtnClick}
-        type="button"
+      <Link
+        to={backLink}
         style={{ marginTop: 20, marginBottom: 10, marginLeft: 25 }}
       >
         Go back
-      </button>
+      </Link>
       <div style={{ display: 'flex', gap: '20px', marginLeft: 25 }}>
         <img
           src={
